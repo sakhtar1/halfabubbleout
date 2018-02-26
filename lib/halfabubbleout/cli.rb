@@ -33,7 +33,7 @@ class HalfaBubbleout::CLI
     puts "Enter a number to view specific services."
     puts ""
     puts "Enter exit to end the program."
-    puts "To sign up at anytime, type sign up."
+    puts "To contact us at anytime, type contact."
     puts "-----"
     input = gets.strip
     puts "-----"
@@ -43,14 +43,14 @@ class HalfaBubbleout::CLI
           end
       end
       puts ""
-      puts "Would you like to sign up?"
+      puts "Would you like to contact us to sign up today?"
       puts ""
       answer = gets.strip
       if ["Y", "YES"].include?(answer.upcase)
         puts ""
-        puts "Click on the link below to sign up!"
+        puts "Click on the link below to contact us!"
         puts ""
-        puts HalfaBubbleout::Service.signup
+        puts HalfaBubbleout::Service.contact
       end
       puts ""
       puts "Would you like to exit or choose another service title?"
