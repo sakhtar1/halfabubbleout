@@ -1,5 +1,4 @@
 require 'pry'
-require 'open-uri'
 class HalfaBubbleout::Service
   attr_accessor :title, :url, :content, :contact
 
@@ -21,16 +20,16 @@ class HalfaBubbleout::Service
       @contact ||= get_service.search(".social-nav p a").map{|sign| sign['href']}.last
     end
 
-    def scrape_content
-      doc = Nokogiri::HTML(open("#{self.url}"))
-      @content ||= doc.search("p").text.strip
+    def self.scrape_content
+      doc = Nokogiri::HTML(open("http://www.halfabubbleout.com/business-consulting"))
+      #doc.search("h3").text.strip()
     end
 
     private
 
     def self.scrape_services
        service_titles = get_service.search(".left-sidebar li a")
-       service_titles.collect{|e| new(e.text.strip,"http://www.halfabubbleout.com/our-services#{e.attr("href")}")}
+       service_titles.collect{|e| new(e.text.strip,"http://www.halfabubbleout.com#{e.attr("href")}")}
     end
 
 
@@ -38,5 +37,5 @@ class HalfaBubbleout::Service
         Nokogiri::HTML(open('http://www.halfabubbleout.com/our-services'))
       end
 
-      #binding.pry
+      binding.pry
 end
